@@ -161,7 +161,7 @@ Open this folder in your IDE
 > git add .
 > git commit -m "Add form for lab 1"
 > git push -u origin solution
-Got to "Pull requests"
+Go to "Pull requests"
 Click "New pull request"
 Select base: main and compare: solution
 Click "Create pull request"

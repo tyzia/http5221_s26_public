@@ -1,0 +1,656 @@
+
+
+
+
+
+
+
+
+
+
+
+
+Welcome to the 2nd part of the course!
+
+
+
+Andrei
+
+The course materials are available online:
+
+https://github.com/tyzia/http5221_s26_public
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What does NaN === NaN return?
+
+
+1) true
+2) false
+3) NaN
+4) SyntaxError
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Answer:
+
+false
+NaN is not equal to anything,
+even to another NaN.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What is your goal in this course?
+
+
+
+
+
+
+
+
+
+
+
+
+To become a web developer.
+
+
+To achieve this goal, you need to learn.
+I am here to help you learn.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Expectations
+
+
+
+
+
+
+
+
+
+
+
+What I expect from you:
+
+
+
+Hard work
+Learning something new is never easy.
+I appreciate your hard work and desire to learn.
+
+Honesty
+Please, don't submit the code which is not yours.
+
+Timely submissions
+Assignments may quickly pile up for you.
+Please submit on time.
+
+Attendance
+If you are not present, you can't ask me questions
+or get something which I didn't prepare in the slides.
+I will mark your attendance.
+
+If you can't attend,
+send me a message before the start of the class
+or within 48 hours after it.
+Please, provide the reason.
+
+Do not disturb
+If you need to talk, you may leave the classroom.
+Please, let others learn.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your questions
+
+
+You might have a lot of questions.
+It is always nice to hear them.
+I will pause and ask for your questions.
+
+I will not be able to spend too much time on questions,
+as I need to move on with the material,
+but after the lecture, you are more than welcome to reach out to.
+
+
+
+
+
+
+
+
+
+
+
+
+If your code doesn't work
+submit your solution as is (not working),
+add comments to your submission, what is
+not working and what you tried.
+
+I will guide you how to fix it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contacting me
+
+
+If you need clarification, or you have a question
+the best is to send me message through Blackboard.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Critical Path
+
+We will cover JavaScript in this course.
+
+/critical_path/http5221_security_critical_path_s26.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+Submissions and Marks
+
+Your mark is a combination of two parts:
+
+- Technical evaluation - github submission (max 50% of the mark)
+- Understanding evaluation - handwritten quiz (max 50% of the mark)
+
+Penalties:
+
+5% for low code quality (lint)
+5% per day for late submissions
+
+More information in /marking/marking.pdf
+Quiz example in /marking/w6_quiz_B.pdf
+
+
+At the start of each lecture we will have a 10 min recap
+of the previous week and 15-20 min handwritten quiz.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Friends vs enemies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Best friends
+
+
+
+
+
+
+
+
+
+
+
+
+
+1 You
+2 Teacher
+3 AI
+
+
+
+
+
+
+
+
+
+
+
+
+Best enemies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1) Copy-Paste AI generated code
+
+
+
+
+
+
+
+
+
+
+Why copy-paste from AI is bad?
+
+- You don't learn.
+- AI makes mistakes. You need experience and
+knowledge to spot them.
+
+
+Use AI to learn.
+
+Ask questions.
+
+Ask AI for explanations.
+
+
+
+
+
+
+
+
+
+
+I like badly formatted code with minor syntax mistakes,
+that proves that you wrote it yourself.
+
+You are learning. Making mistakes is normal.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2) Copy-Paste your own code
+
+
+
+
+
+
+
+
+
+
+Why copy-paste your own code is bad?
+
+
+
+- Usually you need similar, but still slightly
+different code. It is very much likely that you
+forget to update it.
+
+
+
+
+
+Example
+
+const books = [
+    { title: 'JavaScript', author: 'D. Ford' },
+    { title: 'Clean Code', author: 'R. Martin' },
+    { title: 'You Do not Know JS', author: 'K. Simpson' }
+];
+
+books.forEach(book => console.log(book.author));
+
+Output:
+
+// D. Form
+// R. Martin
+// K. Simpson
+
+
+
+
+const events = [
+    { title: 'JSConf', venue: 'Convention Center' },
+    { title: 'DevOps Days', venue: 'Tech Hub' },
+    { title: 'React Summit', venue: 'Online' },
+    { title: 'PyCon', venue: 'City Auditorium' }
+];
+
+
+
+// 1 Mistake - copy-paste
+
+...
+
+
+// 2 Mistake
+
+
+...
+
+
+
+// 3 Mistake
+
+
+...
+
+
+
+
+
+
+
+
+Expected code
+
+events.forEach(event => console.log(event.venue));
+
+
+
+
+
+
+
+
+Recommendation:
+
+Copying your own code almost always
+triggers unexpected errors (forgot to change id or click handle).
+You might struggle debugging this error longer,
+than you would spend to retype the necessary part of code.
+
+My advice - always type your code, don't copy.
+
+
+
+
+
+
+
+
+
+
+- If you need same functionality again,
+think of creating a method for this purpose.
+
+Otherwise, this code is hard to maintain.
+
+
+
+
+
+
+Example
+
+We print .title
+
+
+
+const books = [
+    { title: 'JavaScript', author: 'D. Ford' },
+    { title: 'Clean Code', author: 'R. Martin' },
+    { title: 'You Do not Know JS', author: 'K. Simpson' }
+];
+
+books.forEach(book => console.log(book.title));
+
+const events = [
+    { title: 'JSConf', venue: 'Convention Center' },
+    { title: 'DevOps Days', venue: 'Tech Hub' },
+    { title: 'React Summit', venue: 'Online' },
+    { title: 'PyCon', venue: 'City Auditorium' }
+];
+
+events.forEach(event => console.log(event.title));
+
+
+const albums = [
+    { title: 'Bad', year: '2025' },
+    { title: 'Good', year: '2000' }
+];
+
+albums.forEach(album => console.log(album.title));
+
+
+
+
+
+
+
+
+Let's better organize our code:
+
+
+const books = [
+    { title: 'JavaScript', author: 'D. Ford' },
+    { title: 'Clean Code', author: 'R. Martin' },
+    { title: 'You Do not Know JS', author: 'K. Simpson' }
+];
+
+const events = [
+    { title: 'JSConf', venue: 'Convention Center' },
+    { title: 'DevOps Days', venue: 'Tech Hub' },
+    { title: 'React Summit', venue: 'Online' },
+    { title: 'PyCon', venue: 'City Auditorium' }
+];
+
+const albums = [
+    { title: 'Bad', year: '2025' },
+    { title: 'Good', year: '2000' }
+];
+
+books.forEach(book => console.log(book.title));
+events.forEach(event => console.log(event.title));
+albums.forEach(album => console.log(album.title));
+
+
+
+
+
+
+
+
+
+Business people ask you to change your code:
+
+log -> warn
+
+// demo in devtools (.log, .warn, .error)
+
+
+With current code you change 3 times.
+
+
+
+
+
+
+
+
+A better approach was to create method:
+
+function printTitle(iterable) {
+    iterable.forEach(item => console.log(item.title));
+}
+
+
+
+
+
+
+Use that method in your code:
+
+printTitle(books);
+printTitle(events);
+printTitle(albums);
+
+
+
+
+
+
+
+
+
+
+
+
+
+Recommendation:
+
+If you repeat yourself 3+ times, think of
+creating a method. It will be easier to maintain.
+This is a good practice.
+
+
+
+
+
+
+
+
+

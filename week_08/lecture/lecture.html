@@ -101,7 +101,6 @@
 
 
 
-				// Never use 'var'
 
 
 
@@ -182,7 +181,7 @@
 
 
 
-				// const numberOfActiveUsersInTheCurrentSessionForBrokerUser
+				// const numberOfActiveUsersInTheCurrentSessionForUpdate
 
 				// Long names: The problem here - it is hard to read.
 
@@ -220,66 +219,70 @@
 
 				// Best practice:
 
+
+
 				// 1) Use meaningful names.
 
-				// Bad:
-				// let x = 10;
-				// let str = 'Hello';
+				// Bad:                  Good:
+				// let x = 10;        -> numberOfRetries = 10;
+				// let str = 'Hello'; -> welcomeMessage = 'Hello';
 
-				// Good
-				// let numberOfRetries = 10;
-				// let welcomeMessage = 'Hello';
+
+
 
 				// 2) Use nouns for variables
-				// & verbs for functions.
+				//    Use verbs for functions
 
-				// Bad:
-				// let calculateTotalPrice = 25;
-				// function userAge() {}
+				// Bad:                          Good:
+				// let calculatePrice = 25;   -> finalPrice = 25;
+				// function userAge() {}      -> checkUserAge() {}
 
-				// Good:
-				// let userAge = 25;
-				// function calculateTotalPrice() {}
+
+
 
 				// 3) Avoid abbreviations.
 
-				// Bad:
-				// let usrCnt = 10;
+				// Bad:                 Good:
+				// let usrCnt = 10;  -> userCount = 10;
 
-				// Good:
-				// let userCount = 10;
 
-				// 4) Consider scope when naming
-				// i.e. how long will variable 'live'.
 
-				// -- Larger scope => longer name
-				// -- Smaller scope => shorter name
 
-				// Large (Global) scope:
+				// 4) Consider scope
+				// i.e. how long a variable 'lives'.
+
+				// Larger scope => longer name
+
+				// Example
 				// const maximumAllowedConnections = 100;
 
-				// Small (local) scope:
+
+				// Smaller scope => shorter name
+
+				// Example
 				// for (let i = 0; i < 2; i++) { console.log(i) }
+
+
+
 
 				// 5) Avoid reserved words.
 
-				// Bad:
-				// const class = 'Math';
+				// Bad:                      Good:
+				// const class = 'Math';  -> className = 'Math'
 
-				// Good:
-				// const className = 'Math';
 
-				// 6) Name of a variable with boolean value
+
+
+
+				// 6) Name of a variable with a boolean value
 				// should answer: true or false
 				// and start with 'is' or 'has'.
 
-				// Bad:
-				// let visible = true;
-				// let activities = true;
+				// Bad:                       Good:
+				// let visible = true;     -> isVisible = true;
+				// let activities = true;  -> hasActivities = true;
 
-				// Good:
-				// let isVisible = true;
-				// let hasActivities = true;
+
 
 
 
@@ -305,6 +308,8 @@
 
 
 				// Answer:
+
+
 
 
 
@@ -442,7 +447,7 @@
 
 				// - A legacy construct
 				// - Created before JavaScript used for large app development
-				// - Currently superseded by safer and clearer alternatives (let and const).
+				// - Currently we have safer and clearer alternatives (let and const).
 
 
 
@@ -508,22 +513,6 @@
 
 
 
-
-
-
-				// var allows you to do many 'crazy' things
-				// and give no errors
-				// which can lead to dangerous and unexpected results.
-
-
-
-
-
-
-
-
-
-				// Never use 'var'
 
 
 
@@ -597,52 +586,8 @@
 
 
 
-				// Can I add new value to const arr?
 
-				// const arr = [ 1, 2, 3, 4 ];
-				// arr.push(5);
-				// console.log(arr);
-
-
-
-
-
-				// Answer:
-
-
-
-
-
-
-
-
-
-
-				// Can I update or add new property of const person?
-
-				// const person = { name: 'Leo', age: 1 };
-				// person.name = 'Andrei';
-				// person.location = 'Canada';
-				// console.log(person);
-
-				// Answer:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				// I can:
+				// with 'const' I can:
 
 
 
@@ -654,12 +599,16 @@
 				// numbers[0] = -1;
 				// console.log(numbers);
 
+
+
 				// 2) Add new value to const array
 
 				// const numbers = [ 1, 2, 3, 4 ];
 				// console.log(numbers);
 				// numbers.push(5);
 				// console.log(numbers);
+
+
 
 				// 3) Update property of const object
 
@@ -668,16 +617,24 @@
 				// person.name = 'John';
 				// console.log(person.name);
 
+
+
 				// 4) Add new property to const object
 
 				// const person = { name: 'Mark', age: 1 };
 				// person.location = 'Canada';
 				// console.log(person);
 
+
+
+
+
 				// This happens because:
+
 				// -- The const variable is a pointer to a specific memory location
 				//    where the object or array is stored.
-				// -- The pointer itself cannot be changed, but the contents of the
+				// -- The pointer itself doesn't change, it is constant,
+				//    but the contents of the
 				//    object or array at that memory location can be modified.
 
 
@@ -689,34 +646,40 @@
 
 
 
-				// I can't:
+				// with 'const' I can't:
 
 
 
 
 
 
-				// 1) Change primitive value:
-				// number, string, boolean.
+				// 1) Change primitive value (number, string, boolean).
 
-				// const pi = 3.14;
+				// const pi = 3.14;  // number
 				// pi = 3.15; // TypeError: Assignment to constant variable.
 
-				// const city = 'Toronto';
+				// const city = 'Toronto'; // string
 				// city = 'Ottawa'; // TypeError: Assignment to constant variable.
 
-				// const isDisabled = true;
+				// const isDisabled = true; // boolean
 				// isDisabled = false; // TypeError: Assignment to constant variable.
+
+
+
 
 				// 2) Reassign const array
 
 				// const numbers = [ 1, 2, 3, 4 ];
 				// numbers = [ 1, 2, 3, 4 ]; // TypeError: Assignment to constant variable.
 
+
+
 				// 3) Reassign const object
 
 				// const person = { name: 'Mark', age: 1 };
 				// person = { name: 'Mark', age: 1 }; // TypeError: Assignment to constant variable.
+
+
 
 				// 4) Declare const without initial value
 				// const country; // SyntaxError: Missing initializer in const declaration
@@ -737,7 +700,7 @@
 
 
 
-				// Use let whenever const is not appropriate:
+				// Use 'let' whenever 'const' is not appropriate:
 				// -- for variable content like counters, iterators, or something changing.
 
 
@@ -757,7 +720,7 @@
 
 				// const name = 'Andrei'; // string ("", '', ``)
 				// const age = 18; // number
-				// const isLogged = true; // boolean true/false
+				// const isLogged = true; // boolean
 
 				// non-primitive values:
 
@@ -770,8 +733,8 @@
 
 				// special values in JavaScript
 
-				// undefined - a variable that has been declared but not assigned a value
-				// null - an assignment value that represents no value
+				// undefined - no assigned value (a variable has been declared)
+				// null - represents no value
 				// NaN - a value representing Not-a-Number
 
 
@@ -780,7 +743,8 @@
 
 
 
-				// Classes
+
+				// Objects
 
 
 
@@ -790,19 +754,42 @@
 
 
 
+				// Object is a collection of related data.
 
-				// Let's recap what is an object
-
-
-
+				// Example:
 
 
+				// const person = {
+				// 	name: 'Andrei',
+				// 	age: 18,
+				// 	location: 'Toronto'
+				// };
+				// console.log(person);
 
 
 
 
 
-				// Task: create person data
+				// We access data inside of object with dot (.) notation:
+
+				// console.log(person.name);
+
+
+
+
+
+
+
+
+				// Let's assume, I don't like objects,
+				// they seem too complex, I'd try to
+				// avoid them and use only variables.
+
+
+				// Task: create 2 person data
+
+
+				// Step 1 create variables for one person:
 
 				// let name = 'Andrei';
 				// let age = 18;
@@ -812,25 +799,24 @@
 
 
 
-				// Task: create another person data
-
-
-				// We can NOT copy & update
-				// we will get SyntaxError
+				// Step 2 copy same variables for another parson:
 
 				// let name = 'Michael';
 				// let age = 4;
 				// let location = 'Quebec';
 
+				// We can NOT copy - this will show SyntaxError
 
 
 
-				// try to solve the issue by removing let:
+
+				// Step 3 remove 'let', did it solve the issue?
+
 				// name = 'Michael';
 				// age = 4;
 				// location = 'Quebec';
 
-				// now let's see what we have in our variables
+				// No, we lost data of person 1
 				//    console.log(name);
 				//    console.log(age);
 
@@ -838,17 +824,12 @@
 
 
 
-
-
-
-
-
-				// How we can solve our problem? Rename variables!
+				// Step 4, let's rename variables!
 
 				//    let name2 = 'Michael';
 				//    let age2 = 4;
 				//    let location2 = 'Quebec';
-				//
+
 				//    console.log(name2);
 				//    console.log(age2);
 
@@ -871,40 +852,10 @@
 
 
 
-				// Task: create car data
+				// Example location for car and location for person
 
-				//    let name = 'BMW'; // make
-				//    let age = 2;
-				//    let location = 'London';
-
-
-
-
-
-
-
-
-
-
-				// To solve problem - we use Objects
-
-				// Object is a collection of related properties.
-
-				const man = {
-					name: 'Andrei',
-					age: 18,
-					location: 'Toronto',
-				};
-
-				// console.log(man);
-
-				const car = {
-					name: 'BMW',
-					age: 2,
-					location: 'London',
-				};
-
-				// console.log(car);
+				//  let locationCar = 'London';
+				//  let locationPerson = 'Toronto';
 
 
 
@@ -915,23 +866,35 @@
 
 
 
-				// Object can have methods/functions
-
-				const developer = {
-					name: 'Bill',
-					showName: function () {
-						return this.name;
-					},
-					showNameIfTrue: function (isTrue) {
-						return isTrue ? this.name : false;
-					}
-				}
-
-				// console.log(developer.showName());
-				// console.log(developer.showNameIfTrue(true));
-				// console.log(developer.showNameIfTrue(false));
+				// To better organize our code - we use Objects
 
 
+				// const man = {
+				// 	name: 'Andrei',
+				// 	location: 'Toronto',
+				// };
+
+				// console.log(man.location);
+
+				// const car = {
+				// 	make: 'BMW',
+				// 	location: 'London',
+				// };
+
+				// console.log(car.location);
+
+
+
+
+
+
+
+
+
+
+
+
+				// Class
 
 
 
@@ -944,15 +907,23 @@
 
 				// We can copy
 
-				const developer2 = {
-					name: 'Marshal',
-					showName: function () {
-						return this.name;
-					},
-					showNameIfDay: function (isDay) {
-						return isDay ? this.name : null;
-					}
-				}
+
+
+
+				// original object
+
+				// const developer = {
+				// 	name: 'Nick',
+				//  location: 'Toronto',
+				//  income: 100
+				// }
+
+
+				// const developer2 = {
+				// 	name: 'Michael',
+				//  location: 'Vancouver',
+				//  income: 200
+				// }
 
 
 
@@ -966,20 +937,49 @@
 				// That's where idea of a class comes in.
 				// Class is like a template
 
-				class Developer {
-					name;
-					income = 0;
-					realEstate = [];
 
-					showName() {
-						return this.name;
-					}
-				}
+				// We define class with 'class' keyword
+				// and start its name with Capital letter
 
-				// Create object using Developer class
-				const webDev = new Developer();
-				//    console.log(webDev);
-				//    console.log(webDev.s  howName());
+				// Inside {} we list all properties, which
+				// are related, ex. name, location, income.
+
+
+
+
+
+
+				// Example
+
+
+				// class Developer {
+				// 	name;
+				//  	location;
+				// 	income;
+				// }
+
+
+				// Here we say: "future object of class Developer
+				// would have three properties"
+
+				// name
+				// location
+				// income
+
+
+
+
+
+				// Now we can use this class to create
+				// an object of this class.
+
+				// We use 'new' keyword and call class with ()
+
+
+				// Example
+
+				// const webDev = new Developer();
+			    // console.log(webDev);
 
 
 
@@ -992,43 +992,19 @@
 
 				// Class constructor
 
+
+
+
 				// To customize our object we can do something like this:
 
-				const dev1 = new Developer();
-				dev1.name = '1';
-
-				const dev2 = new Developer();
-				dev2.name = '2';
-
-
-
-
-
-
-
-
-
-
-				// Instead let's have constructors
-
-				// while creating object we can pass parameters to customize the object
-
-				class Animal {
-					name;
-					age;
-					breed;
-
-					constructor(nameIn, ageIn) {
-						this.name = nameIn;
-						this.age = ageIn;
-					}
-				}
-
-				const dog = new Animal(null, null);
-				//    console.log(dog);
-
-				const mouse = new Animal('Micky', 1);
-				//    console.log(mouse);
+				// const dev1 = new Developer();
+				// dev1.name = '1';
+				//
+				// const dev2 = new Developer();
+				// dev2.name = '2';
+				//
+				// console.log(dev1);
+				// console.log(dev2);
 
 
 
@@ -1039,19 +1015,40 @@
 
 
 
-				// We can extend other classes
+				// We can use class constructor to achieve the same result
+				// constructor is the method which is always
+				// called when we instantiate our class
+				// (create object based on class)
 
-				class Zoo extends Animal {
-					city;
 
-					constructor(cityIn, nameIn, ageIn) {
-						super(nameIn, ageIn);
-						this.city = cityIn;
-					}
-				}
 
-				const monkey = new Zoo('Vancouver', 'ABC', 2);
-				//    console.log(monkey);
+				// class Developer {
+				// 	name;
+				// 	location;
+				// 	income;
+				// 	constructor(name) {
+				// 		this.name = name;
+				// 	}
+				// }
+
+				// const dev3 = new Developer('Andrei');
+				// console.log(dev3);
+
+
+
+				// We can skip constructor and object will
+				// be still created
+
+				// const dev4 = new Developer();
+				// console.log(dev4);
+
+
+
+
+
+
+
+
 
 
 
@@ -1102,8 +1099,8 @@
 
 
 
-				// JavaScript allows you to listen for these events
-				// and respond to them by executing code.
+				// JavaScript allows you to wait for these events
+				// and executing code in response (called event handler).
 
 
 
@@ -1111,33 +1108,6 @@
 
 
 
-
-				// There are three main concepts related to events:
-
-				// target
-				// listener
-				// object
-
-
-
-
-
-
-
-
-
-
-				// Event Target - The element that the event occurs on:
-				// -- a button
-				// -- an input field
-				// -- form
-
-				// Event Listener - our code (function) for a specific event.
-
-				// Event Object - an object that contains information about the event:
-				// -- which key was pressed
-				// -- the mouse position
-				// etc.
 
 
 
@@ -1158,28 +1128,36 @@
 
 
 				// 1) Select the element
+
 				// document.querySelector()
 				// document.getElementById()
 
 				// Example:
-				// const btn = document.querySelector('#change_color');
 
 
-				// 2) Attach an event listener
+				// HTML
+				// <button id="change_color">Change color</button>
+
+				// JS
+				// const colorButton = document.querySelector('#change_color');
+
+
+
+
+				// 2) Attach an event listener with event handler
+
 				// addEventListener()
 
-				// Example:
-				// btn.addEventListener('click', clickHandler);
-
-
-				// 3) Define the event handler
-				// a function that will execute when the event occurs.
 
 				// Example:
-				// function clickHandler() {
-				//     const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
-				//     document.body.style.backgroundColor = rndCol;
-				// }
+
+				// JS
+				// colorButton.addEventListener('click', () => {
+				//     document.body.style.backgroundColor = 'rgb(255 255 255)';
+				// });
+
+
+
 
 
 
@@ -1198,31 +1176,17 @@
 
 				// Demo of button click event
 
-				const btn = document.querySelector('#change_color');
-
-				function random(number) {
-					return Math.floor(Math.random() * (number + 1));
-				}
-
-				function clickHandler() {
-					document.body.style.backgroundColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
-				}
-
-				btn.addEventListener('click', clickHandler);
-
-
-
-
-
-
-
-
-				const btnFontChange = document.querySelector('#change_font');
-				btnFontChange.addEventListener('click', () => {
-					const fontWrapper = document.querySelector('#change_font_wrapper');
-					const size = Math.floor(Math.random() * 50);
-					fontWrapper.style.fontSize = `${size}px`;
-				});
+				// const colorButton = document.querySelector('#change_color');
+				//
+				// function random(number) {
+				// 	return Math.floor(Math.random() * (number + 1));
+				// }
+				//
+				// function clickHandler() {
+				// 	document.body.style.backgroundColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+				// }
+				//
+				// colorButton.addEventListener('click', clickHandler);
 
 
 
@@ -1233,14 +1197,6 @@
 
 
 
-				// Demo of event object
-
-				const btnChangeEvent = document.querySelector('#change_event');
-				btnChangeEvent.addEventListener('click', changeHandler);
-
-				function changeHandler(event) {
-					console.log(event);
-				}
 
 
 
@@ -1248,29 +1204,6 @@
 
 
 
-
-
-
-				// Demo key events
-
-
-
-				const txtIn = document.querySelector("#input-text");
-
-				txtIn.addEventListener('keydown', keydownHandler);
-
-				function keydownHandler(e) {
-					const keydownDiv = document.querySelector('#keydown');
-					keydownDiv.innerHTML = `<p>${e.keyCode}</p>${keydownDiv.innerHTML}`;
-				}
-
-
-				txtIn.addEventListener('keyup', keyupHandler);
-
-				function keyupHandler(e) {
-					const keyupDiv = document.querySelector('#keyup');
-					keyupDiv.innerHTML = `<p>${e.keyCode}</p>${keyupDiv.innerHTML}`;
-				}
 
 
 
@@ -1285,36 +1218,163 @@
 
 
 
+				// We use name of the form in JS to get the form
+
+				// HTML
+				// <form name="location_form">...</form>
+
+				// JS
+				// const locationsForm = document.forms.location_form;
 
 
 
 
-				const locationsForm = document.forms.location_form;
-				const locationData = document.getElementById('location-data');
 
-				locationsForm.onsubmit = submitHandle;
+				// Once we have form in JS, we can listen to its 'submit' event
 
-				function submitHandle() {
-					let locationName;
-					let locationAddress;
-					storeFormValues();
-					showFormValues();
-					return false;
-				}
+				// To listen to form submission we use 'onsubmit' event
 
-				function storeFormValues() {
-					locationName = locationsForm.name1.value;
-					locationAddress = locationsForm.address1.value;
-//        console.log(locationName, locationAddress);
-				}
-
-				function showFormValues() {
-					locationData.textContent = `Location name: ${locationName} and address: ${locationAddress}`;
-//        console.log(locationData.textContent);
-					locationData.style.display = 'block';
-				}
+				// locationsForm.onsubmit = submitHandle;
 
 
+				// We can define code, which should run when the form
+				// is submitted, this is called submit handler
+
+				// function submitHandle() {
+				// 	...
+				// 	return false; // to prevent page reload
+				// }
+
+
+
+
+				// We can get value of any input field by name.
+
+				// 	HTML
+
+				// <form name="location_form">
+				// 		<input name="phone">
+				// 	</form>
+
+				// JS
+
+				// const locationsForm = document.forms.location_form;
+				// const phoneInput = locationsForm.phone.value;
+
+
+
+
+				// DOM manipulations with JS
+
+
+
+				// - Update styles (.style)
+
+				// document.body.style.backgroundColor = 'rgb(255 255 255)';
+
+
+				// - Hide element (.style.display = 'none')
+
+				// HTML
+				// <span id="location"></span>
+
+				// JS
+				// const locationData = document.getElementById('location');
+				// locationData.style.display = 'none';
+
+				// Result
+				// <span id="location" style="display: none;"></span>
+
+
+
+
+
+				// - Show element (.style.display = 'block')
+
+				// HTML
+				// <span id="location" style="display: none;"></span>
+
+				// JS
+				// const locationData = document.getElementById('location');
+				// locationData.style.display = 'block';
+
+				// Result
+				// <span id="location" style="display: block;"></span>
+
+
+
+				// - Update text content of element (.textContent)
+
+				// HTML
+				// <span id="location"></span>
+
+				// JS
+				// const locationData = document.getElementById('location');
+				// locationData.textContent = 'Hello world';
+
+				// Result
+				// <span id="location">Hello world</span>
+
+
+				// - Update HTML content of the element (.innerHTML)
+
+				// HTML
+				// <ul id="location"></ul>
+
+				// JS
+				// const locationData = document.getElementById('location');
+				// locationData.innerHTML = '<li>Hello world</li>';
+
+				// Result
+				// <ul id="location">
+				// 	<li>Hello world</li>
+				// </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+				// Demo
+
+				// const locationsForm = document.forms.location_form;
+				// const locationData = document.getElementById('location-data');
+				//
+				// locationsForm.onsubmit = submitHandle;
+				//
+				// function submitHandle() {
+				// 	const locationName = locationsForm.name1.value;
+				// 	const locationAddress = locationsForm.address1.value;
+				//
+				// 	locationData.textContent = `Location name: ${locationName} and address: ${locationAddress}`;
+				// 	locationData.style.display = 'block';
+				//
+				// 	return false; // to prevent page reload
+				// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				// Thank you
 
 
 
@@ -1337,39 +1397,22 @@
 				//
 				// const listElem = document.getElementById('names-list');
 				// listElem.innerHTML = listOfNames;
+
+
 			}
 		</script>
 	</head>
 
 	<body>
 
-		<h1>Demo for the Lesson!</h1>
+		<h1>Demo for the Lesson</h1>
 
 
 		<section>
 			<h2>Events</h2>
 			<div class="example">
-				<p>Example of button click with named function</p>
+				<p>Example of button click</p>
 				<button id="change_color">Change color</button>
-			</div>
-			<div class="example" id="change_font_wrapper">
-				<p>Example of button click with anonymous function</p>
-				<button id="change_font">Change font size</button>
-			</div>
-			<div class="example">
-				<p>Example of event object</p>
-				<button id="change_event" class="test-button">See event object</button>
-			</div>
-			<div class="example">
-				<p>Keyboard Events</p>
-				<div class="keys">
-					<div class="input-field">
-						<label for="input-text">Click inside and type any char</label>
-						<input type="text" id="input-text" name="input-text">
-					</div>
-					<div>Code of key up: <div id="keyup"></div></div>
-					<div>Code of key down: <div id="keydown"></div></div>
-				</div>
 			</div>
 		</section>
 

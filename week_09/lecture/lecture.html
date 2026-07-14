@@ -87,7 +87,7 @@
 
 
 
-		// Do NOT
+		// How not to write your comments.
 
 
 
@@ -96,78 +96,194 @@
 
 
 
-		// Do not explain obvious things:
-
-		let numberOfItems = 10;  // Set number of items to 10
-		// e.preventDefault(); // Prevent the default form submission
-
-		// Do not clarify the naming
-
-		let total;  // The total cost of all items
-
-		// Better give descriptive name to your variable:
-
-		let totalCostAllItems;
-
-		// Do not leave commented out code:
-
-		// console.log('test');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// You may use comments when you start developing
-
-		// Write your pseudocode!
-
-		// Create form
-		// Get value of the fields
-		// Validate fields
-		// If validation passed display success message
-		// Else display error
-
-		// But after you added code, please
-		// remove all your comments!
-
-
-
-
-
-
-
-
-
-
-
-		// If you add a comment to code:
-		// -- explain why, not what
-		// -- explain complex logic
-		// -- document functions
-
-
+		// Do not explain obvious things.
 
 
 		// Example
+		let numberOfItems = 10;  // Set number of items to 10
+
+		// Example
+		// e.preventDefault(); // Prevent the default
+
+
+
+		// Do not clarify the naming, but give
+		// your variables descriptive names.
+
+		// Bad
+		let total;  // The total number of books
+
+		// Good
+		let totalBooks;
+
+
+
+		// Do not leave commented out code
+
+		// Example
+		// console.log('I need to debug this line');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Please, user use comments as pseudocode
+		// when you start developing.
+
+
+		// Example
+
+
+		// My task is to display values from fields
+		// on the page when user submits a form.
+
+		// I will create comments describing
+		// my plan or steps (called "pseudocode").
+
+		// "Pseudocode" means to is not real code.
+
+
+
+		// Step 1 create pseudocode
+
+		// Get form from document
+		// Listen on submit event of the form
+		// If event happens, find form fields
+		// Get values from these fields
+		// Find element where to display values
+		// Make element visible
+
+
+
+
+
+		// Step 2 add actual code
+
+		// Get form from document
+		const form = document.querySelector('form');
+
+		// Listen on submit event of the form
+		form?.addEventListener('submit', function(event) {
+			// If event happens, find form fields
+			const nameField = document.getElementById('name');
+			const emailField = document.getElementById('email');
+
+			// Get values from these fields
+			const name = nameField.value;
+			const email = emailField.value;
+
+			// Find element where to display values
+			const displayDiv = document.getElementById('result');
+
+			// Make element visible
+			displayDiv.style.display = 'block';
+			displayDiv.innerHTML = `Name: ${name}, Email: ${email}`;
+		});
+
+
+
+		// Step 3 Remove pseudocode comments
+
+
+		// const form = document.querySelector('form');
+		//
+		// form.addEventListener('submit', function(event) {
+		// 	const nameField = document.getElementById('name');
+		// 	const emailField = document.getElementById('email');
+		//
+		// 	const name = nameField.value;
+		// 	const email = emailField.value;
+		//
+		// 	const displayDiv = document.getElementById('result');
+		//
+		// 	displayDiv.style.display = 'block';
+		// 	displayDiv.innerHTML = `Name: ${name}, Email: ${email}`;
+		// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// If you want to add a comment to your code:
+
+		// -- Explain why, not what
+		// -- Explain complex logic
+		// -- Document functions
+
+
+
+
+		// Example (Explain why, not what)
 
 		// Keeping legacy format for backward compatibility
 		// const apiResponse = convertToNewFormat(data, { legacy: true });
 
 
+		// Here I explain why I add { legacy: true } parameter
+		// Because this is natural question of someone else
+		// reading this line of code "Why did you add this parameter?"
 
 
+
+
+
+
+
+
+
+		// Example (complex logic or document function)
+
+		// A user can have multiple discounts:
+		// - Staff discount (10%)
+		// - Loyalty discount (5%)
+		// - Bulk purchase discount (15% if buying 10+ items)
+		// Discounts stack, but cannot exceed 40% total
+
+		function calculateFinalPrice(order) {
+			let basePrice = order.totalPrice;
+			let totalDiscount = 0;
+
+			// Check if add staff discount
+			if (order.user.isStaff) {
+				totalDiscount += 0.10;
+			}
+
+			// Check if add loyalty discount
+			if (order.user.isLoyalCustomer) {
+				totalDiscount += 0.05;
+			}
+
+			// Check if add bulk discount
+			if (order.items.length >= 10) {
+				totalDiscount += 0.15;
+			}
+
+			if (totalDiscount > 0.40) {
+				totalDiscount = 0.40;
+			}
+
+			return basePrice * (1 - totalDiscount);
+		}
 
 
 
@@ -228,26 +344,9 @@
 
 
 
-		// Example
+		// demo/use_strict.html
 
 
-
-
-		// x = 1;
-
-
-
-
-
-
-
-
-
-
-
-
-		// "use strict";
-		// x = 1;
 
 
 
@@ -558,6 +657,9 @@
 
 
 
+
+
+
 		// Why do you need to know this?
 
 
@@ -565,48 +667,60 @@
 		// Example
 
 		// I have user input and I want
-		// to check that it is not empty
+		// to check that it is valid (or not invalid)
 
-		// const input = '';
+		// So the idea is to define what is "invalid"
+		// and check that our input is not "invalid"
+
+
+		// Step 1 Define invalid as "empty string"
+		// and check for not equal to it.
+
+
 		// if (input !== '') { ... }
 
 
 
-		// what will happen if input is null?
+		// If input is '', our validation
+		// will not let go inside { ... }
+		// which is good.
+
+		// if ('' !== '') { ... } -> false (good)
 
 
 
-		// const input = null;
-		// if (input !== '') { ... }
+		// What if input is null?
 
-		// my expression will be true.
-		// this is not what I want.
+		// if (null !== '') { ... } -> true (bad)
+
+		// Null passes our validation
+		// which is a mistake!
 
 
 
-		// To fix
-		// I will add one more condition
+		// Step 2 Redefine invalid as "empty string"
+		// OR null and check for not equal to it.
+
+
+
 		// if (input !== '' || input !== null) { ... }
 
 
 
 
+		// What if input is undefined?
 
-		// what will happen if input is undefined?
+		// if (undefined !== '' || undefined !== null) -> true (bad)
 
-
-
-
-
-		// I will add one more condition
-		// if (input !== '' || input !== null || input !== undefined) { ... }
+		// Undefined passes our validation
+		// again a mistake!
 
 
 
 
 
 
-		// what will happen if input is NaN?
+		// What will happen if input is NaN?
 
 		// At this moment I don't want to keep adding
 		// more to my condition.
@@ -617,12 +731,25 @@
 		// A better way is to allow JS to convert
 		// my value to truthy or falsy
 
-		// if (!input) { ... }
-		// this will be true in any of these cases:
-		// - ''
-		// - null
-		// - undefined
-		// - NaN
+
+		// Essentially we are saying:
+		// "if anything valid do something"
+
+		// if (input) { ... }
+
+
+		// Result
+		// if (null) { ... } -> false
+		// if (undefined) { ... } -> false
+		// if ('') { ... } -> false
+		// if (NaN) { ... } -> false
+
+
+
+		// Mind, that with this logic
+		// 0 will be pass validation
+		// but in financial operations
+		// it is a truthy value.
 
 
 
@@ -633,18 +760,6 @@
 
 
 
-		// Comparison of null and undefined
-
-
-		// null & undefined are falsy
-		// but they do not equal to anything
-		// other than themselves
-
-		// console.log(null == undefined); // true
-		// console.log(null == false); // false
-		// console.log(undefined == false); // false
-
-		// console.log(null === undefined); // false
 
 
 
@@ -676,42 +791,72 @@
 
 		// Two ways to create a function:
 
-		// One way:
-
-		function onePlusOne() {
-		    const result = 1 + 1;
-		    return result;
-		}
-		onePlusOne();
 
 
-		// Second way:
 
-		const twoPlusTwo = function() {
-		    const result = 2 + 2;
-		    return result;
-		}
-		twoPlusTwo();
+		// One way (with function keyword + name)
+
+		// function onePlusOne() {
+		//     const result = 1 + 1;
+		//     return result;
+		// }
+		// console.log(onePlusOne());
+
+
+
+
+		// Second way (define variable and assign function
+		// as a value to it)
+
+		// const twoPlusTwo = function() {
+		//     const result = 2 + 2;
+		//     return result;
+		// }
+		// console.log(twoPlusTwo());
+
+
+
+
+
+
+		// We can pass arguments to function
+
+		// const addTwo = function(num) {
+		// 	const result = num + 2;
+		// 	return result;
+		// }
+		// console.log(addTwo(3));
+
+
+
+
+
+
+
+
+
+
+
 
 
 		// Arrow functions
 
-		const threePlusThree = () => {
-		    const result = 3 + 3;
-		    return result;
-		}
-		threePlusThree();
+		// const threePlusThree = () => {
+		//     const result = 3 + 3;
+		//     return result;
+		// }
+		// console.log(threePlusThree());
 
 
 		// Or even this simple syntax:
 
-		const fourPlusFour = () => 4 + 4;
-		fourPlusFour();
+		// const fourPlusFour = () => 4 + 4;
+		// console.log(fourPlusFour());
 
 		// With parameter (without parentheses):
 
-		const sumOfVariable = numberIn => numberIn + 1;
-		sumOfVariable(2);
+		// const sumOfVariable = numberIn => numberIn + 1;
+		// console.log(sumOfVariable(2));
 
 
 
@@ -722,6 +867,8 @@
 
 
 		// Refactoring example
+
+		// Find logic mistake below
 
 		function validateAge(ageToValidate) {
 		    let isAgeValid;
@@ -736,27 +883,41 @@
 		}
 
 
+
+
+
+		// Refactor steps
+		// 1 Remove redundant isAgeValid
+		// 2 Remove redundant if...else
+		// 3 (Optional) Make one-line code
+
+
+
+
+
+
+
 		// Refactor 1
 
-		function validateAge2(ageToValidate) {
-		    if (ageToValidate >= 18 || ageToValidate <= 25) {
-		        return true;
-		    } else {
-		        return false;
-		    }
-		}
+		// function validateAge2(ageToValidate) {
+		//     if (ageToValidate >= 18 && ageToValidate <= 25) {
+		//         return true;
+		//     } else {
+		//         return false;
+		//     }
+		// }
 
 
 		// Refactor 2
 
-		function isAgeValid(ageToValidate) {
-		    return ageToValidate >= 18 && ageToValidate <= 25;
-		}
+		// function isAgeValid(ageToValidate) {
+		//     return ageToValidate >= 18 && ageToValidate <= 25;
+		// }
 
 
 		// Refactor 3
 
-		const isValidAge = age => age >= 18 && age <= 25;
+		// const isValidAge = age => age >= 18 && age <= 25;
 
 
 
@@ -791,35 +952,18 @@
 		// Short notation if-else
 
 
-
-
-
-
-
-
-		// Example of regular syntax
-
-		let result;
-		const condition = true;
-
-		if (condition) {
-		  result = 'hello';
-		} else {
-		  result = 'see you';
-		}
-		// console.log(result);
-
-
-		// Short Syntax: isConditionTrue ? expressionIfTrue : expressionIfFalse
-
-		const conditionNew = true;
-		const resultNew = conditionNew ? 'hello' : 'see you';
+		// const result = condition ? 'hello' : 'see you';
 
 
 		// When to use?
 
 		// -- simple, single-line conditions
 		// -- avoid short notation for complex logic
+
+
+
+
+
 
 
 
@@ -853,7 +997,7 @@
 
 
 		// Surprisingly, but these operators
-		// may be used not only inside of IF conditions.
+		// may be used not only inside IF conditions.
 
 
 
@@ -883,12 +1027,12 @@
 
 
 
-		// operands:
 
-		// Example:
 		// A && B
 
-		// Here operands are A and B
+		// A <- if A is falsy, B is never evaluated (!)
+		// B <- if A is truthy & B is truthy
+		// B <- if A is truthy & B is falsy
 
 
 
@@ -898,13 +1042,17 @@
 
 
 
-		// console.log("" && true); // output is empty string, not false, even if empty string is falsy
-		// console.log(0 && true); // 0
-		// console.log(1 < 2 && null); // null
-		// console.log(1 < 2 && undefined && false); // undefined
-		// console.log(1 && 2); // 2
-		// console.log(1 && 2 && 3 && 4 && -1); // -1
-		// console.log(1 < 2 && 'hi'); // 'hi'
+		// Example
+
+		// "" && true -> ""
+		// 0 && true -> 0
+		// 1 < 2 && null -> null
+		// 1 < 2 && undefined && false -> undefined
+		// 1 && 2 -> 2
+
+
+
+
 
 
 
@@ -912,22 +1060,29 @@
 		// Short circuit.
 
 		// Important!
-		// && = will NEVER execute right-hand side
-		// if left-hand side is false
+
+		// A && B
+
+
+		// B (right-hand side) will NEVER execute
+		// if A (left-hand side) is false
+
+
 
 		// console.log(false && 'you never see me');
 
-		// instead of:
+
+
+		// How to use short-circuit?
+
 
 		// const isLoggedIn = true;
-		// let message;
 		// if (isLoggedIn) {
-		//     message = 'You are logged in';
-		//     console.log(message);
+		//     console.log('You are logged in');
 		// }
 
 
-		// we can do:
+		// Same code using &&
 
 		// const isLoggedIn = true;
 		// isLoggedIn && console.log('You are logged in');
@@ -953,7 +1108,7 @@
 
 
 
-			// || (OR)
+		// || (OR)
 
 
 
@@ -969,38 +1124,77 @@
 		// -- value of the last operand if all are falsy
 
 
-		// console.log(1 || 2); // 1
-		// console.log(3 || true || []); // 3
-		// console.log(null || 'city'); // city
-		// console.log(false || 0 || '' || undefined); // undefined
+		// A || B
+
+		// A <- if A is truthy, B is never evaluated (!)
+		// B <- if A is falsy & B is falsy
+		// B <- if A is falsy & B is truthy
 
 
 
-		// Short circuit.
+
+
+		// Example
+
+		// 1 || 2 -> 1
+		// null || 'city' -> city
+		// false || 0 || '' || undefined -> undefined
+
+
+
+
+
+		// Short circuit (2 cases)
 
 		// Important!
-		// || = will NEVER execute right-hand side
-		// if left-hand side is true
+
+		// A || B
+
+
+		// B (right-hand side) will NEVER execute
+		// if A (left-hand side) is true
+
+
 
 		// console.log(true || 'you never see me');
 
 
+
+
 		// Important!
-		// On the other hand
-		// || = will ALWAYS execute right-hand side
-		// if left-hand side is false
+
+		// A || B
+
+
+		// B (right-hand side) will ALWAYS execute
+		// if A (left-hand side) is false
+
+
 
 		// console.log(false || 'you always see me');
 
 
-		// This feature allows me to set default values like:
-
-		// const username = null;
-		// const name = username || "Default value: Guest";
-		// console.log(name);
 
 
-		// let score = userScore || 0;
+
+		// This last feature allows me to set default values like:
+
+
+		// Example
+		// Set user's score to something from DB, and default to 1
+		// if nothing comes from DB
+
+		// let score = userScore || 1;
+
+
+		// Example
+		// Set welcome message to something from DB, and default
+		// if nothing comes from DB
+
+		// const welcome = message || "Hello world";
+
+
+
 
 
 
@@ -1029,25 +1223,28 @@
 
 
 
-		// It is similar to || (OR) with one exception:
-		// it checks for null or undefined only
-		// while || checks for any falsy value.
-
-
-
-
-
-
-
-
+		// ?? checks for null or undefined.
 
 
 		// Example
 
-		// const name = null;
-		// const defaultName = "Guest";
-		// const result = name ?? defaultName;
-		// console.log(result); // Guest
+		// const score = userScore ?? 0;
+
+		// if userScore = null        -> score = 0
+		// if userScore = undefined   -> score = 0
+		// if userScore = 10          -> score = 10
+		// if userScore = ''          -> score = ''
+		// if userScore = NaN         -> score = NaN
+
+
+
+
+
+
+		// It is different from || (OR) because
+		// it does not check for any falsy value,
+		// but only for null/undefined.
+
 
 
 
@@ -1055,10 +1252,8 @@
 		// Difference between ?? and ||
 
 		// const count = 0;
-		// const result1 = count || 10;
-		// const result2 = count ?? 10;
-		// console.log(result1); // 10
-		// console.log(result2); // 0
+		// const resultX = count || 10; -> 10
+		// const resultY = count ?? 10; -> 0
 
 
 
@@ -1077,7 +1272,22 @@
 
 
 
-		// Optional chaining operator (?.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// ?. (Optional chaining)
 
 
 
@@ -1099,23 +1309,54 @@
 		// const user = { name: 'John' };
 		// console.log(user.address.city); // TypeError: Cannot read property 'city' of undefined
 
+
+
+
+
+
+
+
+
+		// What do you think solution may be?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		// One solution:
 
 		// const user = { name: 'John' };
 		// if (user.address) {
 		//   console.log(user.address.city);
 		// }
-		// user.address = { city: 'New York' };
-		// if (user.address) {
-		//   console.log(user.address.city);
-		// }
+
+
+
+
+
 
 
 		// Better way to do it:
 
 		// const user = { name: 'John' };
 		// console.log(user.address?.city); // undefined
-		// user.address = { city: 'New York' };
+
+
+		// const user = { address: { city: 'New York' } };
 		// console.log(user.address?.city); // New York
 
 
@@ -1181,124 +1422,11 @@
 		// Example of strict equality:
 		// console.log(1 === 1); // true
 		// console.log(1 === '1'); // false
-
-		// The 2nd check is false because the number 1
-		// does not strictly equal the string '1'.
-		// Their types do not match. Number type
-		// doesn't match String type.
-
-
-
-
-
-
-		// Example of not strict equality:
-		// console.log(1 == 1); // true
 		// console.log(1 == '1'); // true
-
-		// These both are true because JS
-		// doesn't compare the types, only
-		// the values. They both have the value 1.
-
-
-
-
-		// This happens due to type coercion.
-
-		// Example: 1 == '1'
-		// 1) Type Coercion: JS sees that I am
-		// comparing a number (1) and a string ('1').
-
-
-		// 2) Conversion:
-		// JS tries to convert the string to a number
-		// so that both values have the same type.
-		// JS converts the string '1' to the number 1.
-
-		// 3) Comparison:
-		// Now, both values are numbers: 1 == 1.
-		// JS compares the values, and the evaluation is true.
-
-
-
-
-
-
-
-		// More examples:
-		// console.log(0 == false); // true (type coercion)
-		// console.log(0 === false); // false (no type coercion)
-
-
-
-
-
-
-		// tricky example
-		// console.log(0 == ''); // true (type coercion)
-
-
-
 
 
 
 		// Always use === to avoid unexpected type coercion.
-
-
-
-
-
-
-
-
-
-		// Type coercion and + (plus)
-
-
-
-
-
-
-
-		// In the case of the plus sign (+),
-		// any time there is at least one string
-		// involved, JS will try to concatenate
-		// two strings instead of performing a math operation.
-
-
-
-
-
-
-
-		// Examples:
-		// console.log(1 + 1); // 2
-		// console.log(1 + '1'); // '11'
-		// console.log('1' + 1); // '11'
-		// console.log('Hello' + 1); // 'Hello1'
-
-
-
-
-
-
-		// If you want to explicitly convert
-		// a string to a number, you can do either:
-		// - Number('1')
-		// - +'1'
-
-
-
-
-
-
-
-		// Examples:
-		// console.log(+'1' + 1); // 2
-		// console.log(1 + +'1'); // 2
-		// console.log(1 + Number('1')); // 2
-
-
 
 
 
@@ -1395,6 +1523,45 @@
 
 
 
+
+		// Example
+
+		// URL: https://example.com:8080/about.html?link=menu
+
+
+		// Properties of the window.location object
+
+
+		// window.location.href -> "https://example.com/about.html?link=menu"
+		// the full URL of the current page
+
+		// window.location.host -> "example.com:8080"
+		// the hostname and port of the URL
+
+		// window.location.hostname -> "example.com"
+		// the hostname of the URL (without port)
+
+		// window.location.pathname -> "/about.html"
+		// the path of the URL after the hostname
+
+		// window.location.search -> "?link=menu"
+		// the query string
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		// Query strings
 
 
@@ -1407,24 +1574,16 @@
 		// open google.com
 		// and search for 'humber'
 
-		// https://www.google.com/search?q=humber&sca_esv=4ad496d1768baf99&source=hp&ei=x7_gZ_zLEdWP0PEPxoDOkAo&iflsig=ACkRmUkAAAAAZ-DN17_AN5eilh0D_z-67yuPu3Biy33C&ved=0ahUKEwi8y7qy0qGMAxXVBzQIHUaAE6IQ4dUDCBg&uact=5&oq=humber&gs_lp=Egdnd3Mtd2l6IgZodW1iZXIyBRAAGIAEMgUQABiABDIOEC4YgAQYxwEYjgUYrwEyBRAAGIAEMgsQLhiABBjRAxjHATIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAESLEeUMsTWJ8acAF4AJABAJgBmwGgAYQFqgEDMy4zuAEDyAEA-AEBmAIGoAK9BagCAMICBRAuGIAEmAMD8QU1Nt9hLVCxiZIHAzAuNqAHv0CyBwMwLja4B70F&sclient=gws-wiz
+		// https://www.google.com/search?q=humber
 
 
-		// Anything after question (?) mark in the URL
-		// is a query string.
 
-		// The syntax of query string is:
+		// Here a query string is:
+		// ?q=humber
 
-		// url ? paramOne = value1 & paramTwo = value2 & ...
-		// (in real life no spaces between)
+		// Two or more query strings are separated with &
 
-
-		// So from google search example we have:
-
-		// q = humber
-		// sca_esv = 4ad496d1768baf99
-		// source = hp
-		// ...
+		// ?q=humber&userId=1
 
 
 
@@ -1432,32 +1591,6 @@
 
 
 
-
-
-
-		// Properties of the window.location object
-
-
-		// href = the full URL of the current page.
-		// host = the hostname and port of the URL.
-		// hostname = the hostname of the URL (without the port).
-		// path = the path of the URL after the hostname.
-		// search = the query string.
-		// hash = the fragment identifier (everything after the #).
-
-
-
-
-
-		// Examples
-
-
-		// console.log(window.location.href); // "https://example.com/about.html?link=menu"
-		// console.log(window.location.host); // "example.com:8080"
-		// console.log(window.location.hostname); // "example.com"
-		// console.log(window.location.pathname); // "/about.html"
-		// console.log(window.location.search); // "?link=menu"
-		// console.log(window.location.hash); // "#section1"
 
 
 

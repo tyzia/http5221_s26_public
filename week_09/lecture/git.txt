@@ -4,6 +4,184 @@ git
 
 
 
+
+
+Essential tool to track changes
+or versions of your code.
+
+
+
+
+
+
+
+
+demo
+
+
+
+> mkdir 77
+> cd 77
+> vim 1
+:i
+Hello world
+:x
+> vim 2
+:i
+Hello team
+:x
+> cat 1
+> cat 2
+
+Here we created two files. Let's change them
+
+> vim 1
+:i
+Hello college
+:x
+> vim 2
+:i
+Haha guys
+:x
+
+Now how do I quickly and safely revert all
+my changes to previous state?
+
+There is no easy way to do that.
+
+
+
+
+
+
+
+
+
+Now let's do the same with git
+
+
+> mkdir 88
+> cd 88
+> git init    <-- this is important step
+> git status
+> vim 1
+:i
+Hello world
+:x
+> vim 2
+:i
+Hello team
+:x
+> cat 1
+> cat 2
+
+Here we created two files.
+We also initiated git.
+
+Let's see what git "thinks" about
+our changes:
+
+> git status
+
+We feel that we might need to
+"save" current state of our files.
+
+To do that with git we need 2 steps:
+
+1. Mark which files/changes to track (git add)
+2. Save snapshot of current changes (git commit)
+
+> git add .
+> git commit -m "Add two files"
+
+
+In the above commands:
+
+dot (.)  means "all files/changes"
+-m       means "commit message"
+(see below the recommendations for commit messages)
+
+
+
+
+
+
+Now let's change our files
+
+> vim 1
+:i
+Hello college
+:x
+> vim 2
+:i
+Haha guys
+:x
+
+
+Let's check how git "sees" this change
+
+> git status
+
+It will show modified files
+
+We can see what actually was changed:
+
+> git diff
+
+Let's say we are happy with these
+changes and want to "save" them.
+
+We again repeat two steps:
+
+> git add .
+> git commit -m "Update file contents"
+
+
+
+So now we are back to the problem
+which we are trying to solve -
+"How to revert back to previous state?"
+
+
+
+
+There are different ways to revert,
+I will use - git revert.
+
+This command expects commit hash (or unique id)
+
+To see commit hashes I will use git log:
+
+> git log --oneline
+
+
+Now I know the id of commit which I
+want to revert:
+
+> git revert a1b2cc3 (example)
+
+
+Git will create another commit to
+"undo" specified commit.
+
+You can see inside files that their
+contents are reverted back.
+With just one command!
+
+
+There are other ways to "undo" in git
+and git can do much more cool things,
+which we will cover next time.
+
+
+
+
+
+
+
+
+
+
 Useful commands
 Best practice for git commits
 

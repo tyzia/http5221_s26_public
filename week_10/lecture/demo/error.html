@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<script>
+  // function showName(a) {
+  //   return a.name;
+  // }
+  //
+  // showName(null); // Uncaught TypeError: Cannot read properties of null (reading 'name')
+  // console.log("you never see this line");
+
+
+
+  // function showName(a) {
+  //    return a.name;
+  // }
+  //
+  // try {
+  // 	showName(null); // this line causes the error
+  // } catch(err) {
+  // 	console.log(`there was an error`);
+  // }
+  // console.log("you will now see this line");
+
+
+
+  // function showName(a) {
+  //    return a.name;
+  // }
+  //
+  // try { showName(null); }
+  // catch(err) { console.log(`there was an error`); }
+  //
+  // try { showName(undefined); }
+  // catch(err) { console.log(`there was an error`); }
+
+
+
+
+
+
+  // function showName(a) {
+  // 	if (a === undefined) {
+  // 		throw new Error('You provided undefined value');
+  // 	}
+  // 	if (a === null) {
+  // 		throw new Error('You provided null value');
+  // 	}
+  //  	return a.name;
+  // }
+  //
+  // try { showName(null); }
+  // catch(err) { console.log(`${err}`); }
+  //
+  // try { showName(undefined); }
+  // catch(err) { console.log(`${err}`); }
+
+
+
+
+  // function showName(a) {
+  // 	if (a === undefined) {
+  // 		throw new Error('You provided undefined value');
+  // 	}
+  // 	if (a === null) {
+  // 		throw new Error('You provided null value');
+  // 	}
+  //    return a.name;
+  // }
+  //
+  // try {
+  // 	showName(null); // undefined
+  // } catch(err) {
+  // 	if (err.message === 'You provided undefined value') {
+  // 		console.error('Something was wrong');
+  // 	}
+  // 	if (err.message === 'You provided null value') {
+  // 		console.warn('Try again');
+  // 	}
+  // }
+
+
+
+  function isValidAge(age) {
+  	return age > 18 || age < 25;
+  }
+
+  function testIsValidAge(age, expectedResult) {
+  	return isValidAge(age) === expectedResult;
+  }
+
+
+  const testCases = [
+  	{ age: 20, expected: true },
+  	{ age: 1, expected: false },
+  	{ age: 100, expected: false },
+  	{ age: 17, expected: false }, // edge case
+  	{ age: 18, expected: true }, // edge case
+  	{ age: 19, expected: true }, // edge case
+  	{ age: 24, expected: true }, // edge case
+  	{ age: 25, expected: true }, // edge case
+  	{ age: 26, expected: false }, // edge case
+  ];
+
+  testCases.forEach(({ age, expected }) => {
+  	const result = testIsValidAge(age, expected);
+  	if (result) {
+  		console.log(`Test passed for age ${age}`);
+  	} else {
+  		console.error(`Test failed for age ${age}: expected ${expected}, got ${isValidAge(age)}`);
+  	}
+  });
+
+
+
+</script>
+<body>
+
+</body>
+</html>

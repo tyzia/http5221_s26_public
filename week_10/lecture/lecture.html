@@ -22,6 +22,7 @@
 
 
 
+
 		// Plan
 
 
@@ -32,11 +33,6 @@
 		// Unit testing
 		// TDD
 
-		// (Recommended)
-
-		// Array methods
-		// Spread operator
-		// Object destructuring
 
 
 
@@ -78,11 +74,11 @@
 
 		// 87 -> "87" (number)
 		// true -> "true" (boolean)
-		// { name: "John" } -> "[object Object]" (object)
 		// [1, 2, 3] -> "1,2,3" (array)
 		// null -> "null"
 		// undefined -> "undefined"
 
+		// { name: "John" } -> "[object Object]" (object)
 
 
 
@@ -118,7 +114,19 @@
 		// When working with Regex follow this approach:
 
 		// 1. Create a pattern with / /
-		// 2. Test string against this pattern.
+		// 2. Test string against this pattern (e.g. .test())
+
+
+
+
+
+		// Example
+
+		/h/.test('hello'); // returns true
+
+		// In other words we say: "Find 'h' in the provided string"
+
+		// console.log(/h/.test('hello')); // change to 'a'
 
 
 
@@ -137,15 +145,33 @@
 
 
 
+
+
+
 		// Patterns
 
-		// /1/ // search for '1'
-		// /h/ // search for 'h'
-		// /[123]/ // search for '1' or '2' or '3'
-		// /[0-9]/ // search for '1' or '2' or ... or '9'
-		// /[a-z]/ // search for one letter in the range
-		// /[a-z]/i // 'i' flag for case-insensitive search
-		// /[a-z]7/ // search for one letter in the range followed by '7'
+		// Pattern can be:
+		// - literal character
+		// - combination of characters
+		// - range of characters
+
+
+
+
+
+
+
+		// Example
+
+		/1/        // search for one number '1'
+		/123/      // search for three numbers '123'
+		/[123]/    // search for one number '1' or '2' or '3'
+		/abc/      // search for three characters 'abc'
+		/[abc]/    // search for one character 'a' or 'b' or 'c'
+
+
+		/[0-9]/    // search for one number in the range
+		/[a-z]/    // search for one letter in the range
 
 
 
@@ -154,37 +180,38 @@
 
 
 
-		// Examples
+		// Where regex is looking for values?
 
-		// 1) Testing for single character
-
-		/1/.test('1');
-		// console.log(/1/.test('1')); // change to '2'
-		// In other words we say: "Find 1 in the string"
-
-		/h/.test('h');
-		// console.log(/h/.test('h')); // change to 'a'
-		// In other words we say: "Find 'h' in the string"
+		// Regex looks everywhere in the string:
+		// console.log(/cat/.test('The cat is nice'));
 
 
 
 
-		// 2) Testing for one character in the range
 
-		/[123]/.test('2');
+
+
+
+
+
+
+
+
+
+		// More examples
+
+		/[123]/.test('2'); // true
+
 		// console.log(/[123]/.test('2')); // change to '1', '0'
 		// I want to find 1 or 2 or 3 in the string
 
 
 
-		// What will be the result of?
-		/[123]/.test('02');
-		// console.log(/[123]/.test('02'));
 
 
-		// Answer:
+		// What is returned here?
 
-
+		/[123]/.test('02'); // ?
 
 
 
@@ -196,9 +223,6 @@
 
 
 
-
-
-		// (true)
 
 
 
@@ -206,7 +230,7 @@
 
 
 		// Explanation:
-		// console.log(/[123]/.test('02'));
+		// console.log(/[123]/.test('02')); // true
 
 		// The pattern /[123]/ matches any single digit from 1 to 3.
 
@@ -229,54 +253,7 @@
 
 
 
-		// If you want to match entire string
-		// see below for ^ & $ markers
 
-
-
-
-
-
-
-
-		// A better way to test for a range of numbers:
-
-		// Instead of /[0123456789]/
-		// Use /[0-9]/
-
-		// Example
-
-		/[0-9]/.test('2');
-		// console.log(/[0-9]/.test('2'));
-
-
-
-
-
-
-
-
-
-
-
-		// The range can be anything:
-
-		/[8-9]/;
-		/[1-5]/;
-		// console.log(/[8-9]/.test('2'));
-		// console.log(/[1-5]/.test('2'));
-
-
-		// Even this range:
-		[1-38-9];
-		// console.log(/[1-38-9]/.test('2')); // 4 ?
-
-
-		// But not this:
-		// console.log(/[9-8]/.test('2')); // SyntaxError
-
-
-		// The range can be characters, not numbers:
 
 		/[a-z]/.test('a');
 		// console.log(/[a-z]/.test('a')); // A ?
@@ -302,15 +279,22 @@
 
 
 
+		// How to search for empty space?
+
+		/ /.test('isThereASpaceHere?');      // false
+
+
+
+
 
 
 		// Tricky examples:
 
 		// What will be the output?
 
-		// console.log(/true/.test(true));
-		// console.log(/null/.test(null));
-		// console.log(/undefined/.test(undefined));
+		/true/.test(true);
+		/null/.test(null);
+		/undefined/.test(undefined);
 
 
 
@@ -321,10 +305,12 @@
 
 
 
-		// Answer: true
+
+
 
 		// Explanation:
 		// JS will convert null to "null" string.
+		// All examples return true.
 
 
 
@@ -335,12 +321,6 @@
 
 
 
-		// Where regex is looking for values
-
-
-
-		// Regex will look everywhere in the string:
-		// console.log(/cat/.test('The cat is nice'));
 
 
 
@@ -360,164 +340,51 @@
 
 
 
+		// Examples
+
+
 
 		// . (any character)
 
-		// Will all these match?
+		/c.t/.test('The cat is nice');     // true
+		/c.t/.test('The cot is nice');     // true
+		/c.t/.test('The ct is nice');      // false
 
-		// console.log(/c.t/.test('The cat is nice'));
-		// console.log(/c.t/.test('The cot is nice'));
-		// console.log(/c.t/.test('The cut is nice'));
-		// console.log(/c.t/.test('The ct is nice'));
 
 
+		// + (one or more match of previous character)
 
+		/ca+t/.test('The cat is nice');     // true
+		/ca+t/.test('The caaat is nice');   // true
+		/ca+t/.test('The ct is nice');      // false
 
 
 
 
+		// * (zero or more of previous character)
 
+		/ca*t/.test('The cat is nice');      // true
+		/ca*t/.test('The caaat is nice');    // true
+		/ca*t/.test('The ct is nice');       // true
 
 
 
-		// Answer: true true true false
 
+		// ? (previous character is optional)
 
+		/ca?t/.test('The cat is nice');       // true
+		/ca?t/.test('The ct is nice');        // true
+		/ca?t/.test('The caat is nice');      // false
 
 
 
 
 
+		// {n} (exactly N matches of previous character)
 
-
-
-		// + (one or more)
-
-		// Will all these match?
-
-		// console.log(/ca+t/.test('The cat is nice'));
-		// console.log(/ca+t/.test('The caaat is nice'));
-		// console.log(/ca+t/.test('The caaaaaaaaaaaaaaaaat is nice'));
-		// console.log(/ca+t/.test('The ct is nice'));
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: true true true false
-
-
-
-
-
-
-
-
-
-
-
-		// * (zero or more)
-
-		// Will all these match?
-
-		// console.log(/ca*t/.test('The cat is nice'));
-		// console.log(/ca*t/.test('The caaat is nice'));
-		// console.log(/ca*t/.test('The caaaaaaaaaaaaaaaaat is nice'));
-		// console.log(/ca*t/.test('The ct is nice'));
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: true true true true
-
-
-
-
-
-
-
-
-
-
-		// ? (preceding character is optional)
-
-		// Will all these match?
-
-		// console.log(/ca?t/.test('The cat is nice'));
-		// console.log(/ca?t/.test('The ct is nice'));
-		// console.log(/ca?t/.test('The caat is nice'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: true true false
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// {n} (exactly n matches for previous character)
-
-		// Will all these match?
-
-		// console.log(/ca{2}t/.test('The cat is nice'));
-		// console.log(/ca{2}t/.test('The caat is nice'));
-		// console.log(/ca{2}t/.test('The caaaaat is nice'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: false true false
-
-
-
-
-
-
-
-
-
-
+		/ca{2}t/.test('The cat is nice');      // false
+		/ca{2}t/.test('The caat is nice');     // true
+		/ca{2}t/.test('The caaaaat is nice');  // true
 
 
 
@@ -525,26 +392,8 @@
 
 		// You can combine special characters
 
-		// Will all these match?
-
-		// console.log(/c.+t/.test('The cat is nice'));
-		// console.log(/c.+t/.test('The ct is nice'));
-		// console.log(/c.*t/.test('The cat is nice'));
-		// console.log(/c.*t/.test('The ct is nice'));
-
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: true false true true
-
+		/c.+t/.test('The cat is nice');       // true
+		/c.+t/.test('The ct is nice');        // false
 
 
 
@@ -560,16 +409,19 @@
 
 
 		// How to search for . or other special characters?
-		// We need to 'escape' it with '\'
+		// We need to 'escape' them with '\'
 
 
-		// Bad
-		// console.log(/./.test('no dots here')); // true
+		// . -> \.
+		// + -> \+
+		// * -> \*
 
-		// Good
-		// console.log(/\./.test('no dots here')); // false
-		// console.log(/\./.test('example.com')); // true
-		// console.log(/\*\*/.test("this is **important**")); // true
+
+
+
+		/./.test('no dots here');                 // true
+		/\./.test('example.com');                 // true
+		/\*\*/.test("this is **important**");     // true
 
 
 
@@ -581,7 +433,7 @@
 		// Tricky question.
 		// How to search for \ ?
 
-		// console.log(/\/.test('is there slash?')); // SyntaxError
+		// /\/.test('is there slash?');     // SyntaxError
 
 
 
@@ -592,7 +444,7 @@
 
 
 		// Escape \ with another \
-		// console.log(/\\/.test('is there \?'));
+		/\\/.test('is there \?');         // true
 
 
 
@@ -612,57 +464,20 @@
 		// Special markers in Regex:
 
 		// \d = any number
-		// \w = any word character (letters, digits, underscores)
+		// \w = any word character (a letter, or a digit, or underscore)
 
 
-		// What will be the output?
-		// console.log(/\d/.test('abc123'));
-		// console.log(/\d+/.test('abc123'));
-		// console.log(/\d{2}/.test('abc123'));
-		// console.log(/\d/.test('abc'));
+		// Examples
 
-
-
+		/\d/.test('abc123');        // true
+		/\d+/.test('abc123');       // true
+		/\d/.test('abc');           // false
 
 
 
 
 
 
-
-
-
-
-
-
-		// Answer: true true true false
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// How to search for empty space?
-
-		// console.log(/ /.test('isThereASpaceHere?'));
 
 
 
@@ -679,7 +494,7 @@
 
 		// How to search for exact match in all string?
 
-		// ^ = marks beginning of the string
+		// ^ = marks the beginning of the string
 		// $ = marks the end of the string
 
 
@@ -691,127 +506,20 @@
 
 
 
-		// Example
-		// console.log(/^cat/.test('cat is cute'));
-		// console.log(/^cat/.test('The cat is cute'));
+		// Examples
 
+		/^cat/.test('cat is cute');      // true
+		/^cat/.test('The cat is cute');  // false
 
+		/cute$/.test('The cat is cute');  // true
+		/cute$/.test('cute cat');         // false
 
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: true false
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Example
-		// console.log(/cute$/.test('The cat is cute'));
-		// console.log(/cute$/.test('cute cat'));
-
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: true false
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Example
-		// console.log(/^cat$/.test('cat'));
-		// console.log(/^cat$/.test('cat '));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: true false
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Examples:
+		/^cat$/.test('cat');             // true
+		/^cat$/.test('cat ');            // false
 
 
 		// Email Validation
-		// console.log(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test("test@example.com"));
-
-
-		// Extracting numbers
-		// console.log("Price: $50.99".match(/\d+\.\d+/));
-
-		// Output: ["50.99"]
-
-
-
-
-
-
-
+		/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test("test@example.com");
 
 
 
@@ -826,6 +534,7 @@
 
 		// small demo
 
+		// Demo validate.html
 
 
 
@@ -839,39 +548,6 @@
 
 
 
-		function isCanadianCode(countryCode) {
-			const pattern = /^can$/i;
-			return pattern.test(countryCode);
-		}
-
-		// console.log('is a valid CAN code? ', isCanadianCode('USA')); // cAn, can, c an, " can", canada
-
-
-
-
-
-
-
-
-
-
-
-
-
-		function validateCanadaAndPrintResult(countryCode) {
-			const pattern = /^can$/i;
-			const isCountryCodeValid = pattern.test(countryCode);
-			if (isCountryCodeValid) {
-				document.querySelector('.output').innerHTML =
-						`${countryCode} is a <strong>valid</strong> Canadian code`;
-			} else {
-				document.querySelector('.output').innerHTML =
-						`${countryCode} is <strong>not</strong> a valid Canadian code`;
-			}
-		}
-
-		// validateCanadaAndPrintResult('Can');
-		// validateCanadaAndPrintResult('usa');
 
 
 
@@ -918,21 +594,21 @@
 
 
 
-		// Example
+		// Example (demo/error.html)
 
-		// function showName(a) {
-		//    return a.name;
-		// }
-		//
-		// showName(null); // Uncaught TypeError: Cannot read properties of null (reading 'name')
-		// console.log("you will never see this line");
+		function showName(a) {
+		   return a.name;
+		}
+
+		showName(null); // Uncaught TypeError: Cannot read properties of null (reading 'name')
+		console.log("you never see this line");
 
 
 
 
 
 		// The app stops working after the line with
-		// error and no code below that line
+		// the error and no code below that line
 		// will be executed.
 
 
@@ -946,6 +622,7 @@
 
 		// Let's fix our code
 		// You noticed 'Uncaught TypeError'
+
 		// This means that JS threw an error while
 		// executing our code and we didn't catch
 		// that error.
@@ -954,7 +631,7 @@
 
 
 
-		// The syntax which we will use is:
+		// The syntax is:
 
 		// try {
 		// 		riskyOperation <- the code which might throw an error
@@ -977,7 +654,7 @@
 
 
 
-		// Example
+		// Example (demo/error.html)
 
 		// function showName(a) {
 		//    return a.name;
@@ -1029,6 +706,7 @@
 
 
 
+		// (demo/error.html)
 
 		// function showName(a) {
 		//    return a.name;
@@ -1127,17 +805,7 @@
 		// }
 		//
 		// try {
-		// 	showName(null);
-		// } catch(err) {
-		// 	if (err.message === 'You provided undefined value') {
-		// 		console.error('Something was wrong');
-		// 	}
-		// 	if (err.message === 'You provided null value') { // change to 'Youu..."
-		// 		console.warn('Try again');
-		// 	}
-		// }
-		// try {
-		// 	showName(undefined);
+		// 	showName(null); // undefined
 		// } catch(err) {
 		// 	if (err.message === 'You provided undefined value') {
 		// 		console.error('Something was wrong');
@@ -1155,97 +823,7 @@
 
 
 
-
-
-
-
-
-
-		// Checking for error messages is not so convenient
-		// I can make a mistake in error message
-		// and it will be not caught
-		// change above to demo.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// To avoid this kind of mistakes in the code
-		// developers prefer to throw:
-		// error code + error message.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// function showName(a) {
-		// 	if (a === undefined) {
-		// 		const error = new Error('You provided undefined value');
-		// 		error.code = 'ERR_UNDEFINED';
-		// 		throw error;
-		// 	}
-		//
-		// 	if (a === null) {
-		// 		const error = new Error('You provided null value');
-		// 		error.code = 'ERR_NULL';
-		// 		throw error;
-		// 	}
-		//    return a.name;
-		// }
-		// try {
-		// 	showName(undefined); // null
-		// } catch(err) {
-		// 	if (err.code === 'ERR_UNDEFINED') {
-		// 		console.error('Something was wrong');
-		// 	}
-		// 	if (err.code === 'ERR_NULL') {
-		// 		console.warn('Try again');
-		// 	}
-		// }
-
-
-
-
-
-
-
-		// Now I am using error codes to handle
-		// different errors differently.
-
-
-
-
-
-
-
-
-		// Remember, in JavaScript, proper error handling
+		// Please, remember, in JavaScript, proper error handling
 		// is not just a good practice; it’s essential for
 		// building reliable, maintainable applications
 		// that can gracefully handle unexpected situations.
@@ -1274,57 +852,40 @@
 
 
 
-		// Unit test - when we test the unit of code.
-		// Usually unit refers to a function.
+		// Unit test - when we test the unit of code (a function).
 
-		// When I say 'test' that means we
-		// verify that our function:
-
-		// -- Is doing what it is supposed to do.
-		// -- Is not doing what it is not supposed to do.
+		// We create new function which tests original function.
 
 
 
 
+		// Example
+
+		// our main function
+
+		// function add(a, b) {
+		// 	return a + b;
+		// }
+
+
+		// our test function for main function
+
+		// function testAdd(a, b, expectedResult) {
+		// 	return add(a, b) === expectedResult;
+		// }
 
 
 
 
-
-
-
-
-		// Let's have a simple function
-		// and a function to test it.
-
-		// - add()
-		// - testAdd()
-
-
-
-
-		// Test function will have three parameters:
-		// - valueA & valueB - for add()
+		// Test function has three parameters:
+		// - a & b - for add()
 		// - expected result
 
 
 
 
-
-
-
-
-
-		// function add(a, b) {
-		// 	return a + b;
-		// }
-		//
-		// function testAdd(valueA, valueB, result) {
-		// 	return add(valueA, valueB) === result;
-		// }
-		// console.log(testAdd(1, 1, 2));
-		// console.log(testAdd(2, 2, 4));
-		// console.log(testAdd(-3, 2, -1));
+		// testAdd(1, 1, 2);      // true
+		// testAdd(2, 3, 5);      // true
 
 
 
@@ -1338,9 +899,46 @@
 
 
 
-		// Let's have another example with function
-		// validating age between 18 and 25 years
-		// And our original function will have an error.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Example (demo/error.html)
+		// Test the function validating age between 18 and 25 years
+		// It has an error.
+
+
+
+
+
+
+
+		// Edge cases
+
+		// In our example: validate age between 18 and 25.
+		// Edge cases are extreme values of my range 18-25:
+
+		// - 17 (right outside valid range)
+		// - 18 (right at the edge of valid range)
+		// - 19 (right inside valid range)
+		// - 24 (right inside valid range)
+		// - 25 (right at the edge of valid range)
+		// - 26 (right outside valid range)
+
+
+
+
+
 
 		// function isValidAge(age) {
 		// 	return age > 18 || age < 25;
@@ -1350,15 +948,29 @@
 		// 	return isValidAge(age) === expectedResult;
 		// }
 		//
-		// // Test cases
-		// const age = 1; // 20, 200
-		// const expected = false; // true, false
-		// const result = testIsValidAge(age, expected);
-		// if (result) {
-		// 	console.log(`Test passed for age ${age}`);
-		// } else {
-		// 	console.error(`Test failed for age ${age}: expected ${expected}, got ${isValidAge(age)}`);
-		// }
+		//
+		// const testCases = [
+		// 	{ age: 20, expected: true },
+		// 	{ age: 1, expected: false },
+		// 	{ age: 100, expected: false },
+		// 	{ age: 17, expected: false }, // edge case
+		// 	{ age: 18, expected: true }, // edge case
+		// 	{ age: 19, expected: true }, // edge case
+		// 	{ age: 24, expected: true }, // edge case
+		// 	{ age: 25, expected: true }, // edge case
+		// 	{ age: 26, expected: false }, // edge case
+		// ];
+		//
+		// testCases.forEach(({ age, expected }) => {
+		// 	const result = testIsValidAge(age, expected);
+		// 	if (result) {
+		// 		console.log(`Test passed for age ${age}`);
+		// 	} else {
+		// 		console.error(`Test failed for age ${age}: expected ${expected}, got ${isValidAge(age)}`);
+		// 	}
+		// });
+
+
 
 
 
@@ -1382,50 +994,6 @@
 
 
 
-		// Now let's talk about edge cases.
-
-		// In our example: validate age between 18 and 25.
-		// Edge cases are extreme values of my range 18-25:
-		// - 17
-		// - 18
-		// - 19
-		// - 24
-		// - 25
-		// - 26
-
-
-
-
-
-
-
-
-		// function isValidAge(age) {
-		// 	return age > 18 && age < 25;
-		// }
-		//
-		// function testIsValidAge(age, expectedResult) {
-		// 	return isValidAge(age) === expectedResult;
-		// }
-		//
-		// // Test cases
-		// const age = 17; // 18, 19, 24, 25, 26
-		// const expected = false; // false, true, true, true, true, false
-		// const result = testIsValidAge(age, expected);
-		// if (result) {
-		// 	console.log(`Test passed for age ${age}`);
-		// } else {
-		// 	console.error(`Test failed for age ${age}: expected ${expected}, got ${isValidAge(age)}`);
-		// }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1440,7 +1008,7 @@
 
 
 		// Let's create tests to check
-		// if function is correctly handles errors
+		// if function is correctly handling errors
 		// (throws error)
 
 
@@ -1457,12 +1025,12 @@
 
 
 		// One important note here:
-		// Business people will not tell you
+		// Business requirements will not tell you
 		// all possible values.
 		// The requirements will be:
 		// "Validate that age is between 18 and 25".
 
-		// But it is your responsibility
+		// But it is your responsibility as a dev
 		// to make sure the app doesn't
 		// crash if there is unexpected or invalid input.
 
@@ -1482,7 +1050,7 @@
 
 		// function isValidAge(age) {
 		// 	if (typeof age !== 'number') {
-		// 		throw new Error('Invalid input: age must be a number'); // "invalid..."
+		// 		throw new Error('Invalid input: age must be a number');
 		// 	}
 		// 	return age >= 18 && age <= 25;
 		// }
@@ -1504,29 +1072,6 @@
 		// }
 
 
-
-
-
-
-
-
-
-		// So I started with this code:
-
-		// function isValidAge(age) {
-		// 	return age > 18 || age < 25;
-		// }
-
-		// And due to my tests I was able
-		// to improve my code to this:
-
-
-		// function isValidAge(age) {
-		// 	if (typeof age !== 'number') {
-		// 		throw new Error('Invalid input: age must be a number');
-		// 	}
-		// 	return age >= 18 && age <= 25;
-		// }
 
 
 
@@ -1623,7 +1168,7 @@
 
 
 
-		// Example
+		// Example (demo/tdd.html)
 
 
 
@@ -1633,6 +1178,11 @@
 
 
 
+
+		// Should validate age between
+		// 18 and 25 (inclusive) and return
+		// - true if inside the range
+		// - false if outside the range
 
 		// function isValidAge(age) {
 		// 	// step 1 -> empty
@@ -1640,12 +1190,19 @@
 		// 	// step 2 -> add code
 		// 	// return age > 18 || age < 25;
 		//
-		// 	// step 3 -> add error handling
+		//     // step 3 -> fix code
+		//     // return age > 18 && age < 25;
+		//
+		//     // step 4 -> fix code
+		//     // return age >= 18 && age <= 25;
+		//
+		// 	// step 5 -> add error handling
 		// 	// if (typeof age !== 'number') {
-		// 	// 	throw new Error('Invalid input: age must be a number'); // "invalid..."
+		// 	// 	throw new Error('Invalid input: age must be a number');
 		// 	// }
+		//     // return age >= 18 && age <= 25;
 		// }
-
+		//
 		// function testIsValidAge(age, expectedResult) {
 		// 	return isValidAge(age) === expectedResult;
 		// }
@@ -1687,638 +1244,6 @@
 
 
 
-
-
-
-
-
-		// Summary:
-
-
-		// Traditional approach
-
-		// Create code according to requirements.
-		// Write tests and verify that code is working.
-		// Fix code if needed.
-
-		// TDD approach
-
-		// Write tests to verify all cases.
-		// Run tests, they should fail.
-		// Create code and rerun tests.
-		// Fix code so that all tests pass.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Meme
-
-
-
-
-
-
-
-
-
-
-
-		// QA (tester) walks into a bar
-		// Runs into a bar
-		// Slides into a bar
-		// Sneaks into a bar
-		// Roll into a bar,
-		// Orders 1 beer,
-		// Orders 0 beer,
-		// Orders 999999 beers,
-		// Orders -1 beer,
-		// Orders a lizard,
-		// Orders dnrifovudirotf
-
-		// User walks into a bar
-		// and asks where the toilet is.
-		// Whole bar crashes.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Array methods
-
-
-		// each array has these methods by default
-
-		// .forEach()
-		// .slice()
-		// .map()
-		// .filter()
-		// .some()
-		// .find()
-
-
-
-
-
-
-
-
-
-
-		// .forEach()
-
-
-
-
-
-
-
-
-
-
-		// Example
-
-		// Regular for loop:
-
-		// const numbers = [1, 2, 3, 4];
-		// for (let i = 0; i < numbers.length; i++) {
-		// 	console.log(numbers[i]);
-		// }
-
-
-
-		// .forEach()
-
-		// const numbers = [1, 2, 3, 4];
-		// numbers.forEach(num => console.log(num));
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// .slice()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// .slice() = creates new array
-		// as portion of original array
-
-		// Effectively it creates a copy of array.
-
-
-
-		// Example
-
-		// const newArr = [100, 200, 300, 400, 500, 600].slice(2, 5);
-		// [300, 400, 500]
-
-		// 2 - starting index (its value is included)
-		// 5 - finishing index (its value is not included)
-
-
-		// const newArr = [100, 200, 300, 400, 500, 600].slice();
-		// [100, 200, 300, 400, 500, 600]
-
-		// This will be 'shallow copy' of array, meaning
-		// it is new array, with the same values.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// .map()
-
-
-
-
-
-
-
-
-
-
-
-
-		// .map() = creates a new array by
-		// applying my function to each element
-		// of original array
-
-
-
-
-		// Example
-
-		// const original = [1, 2, 3, 4];
-		// const doubled = original.map(num => num * 2);
-		// console.log(original); // [1,2,3,4]
-		// console.log(doubled); // [2,4,6,8]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// .filter()
-
-
-
-
-
-
-
-
-
-
-
-
-		// .filter() = creates a new array
-		// with elements which pass my test
-
-
-
-
-		// Example
-
-		// const original = [-1, -2, 3, -4, 5];
-		// const positive = original.filter(num => num >= 0);
-		// console.log(original); // [-1,-2,3,-4,5]
-		// console.log(positive); // [3,5]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// .some()
-
-
-
-
-
-
-
-
-
-
-
-
-		// .some() = returns true if at least
-		// one element in the array passes my test
-		// otherwise false
-
-
-
-
-
-
-		// Example
-		// Even vs odd
-
-		// One value (2) is even, returns true
-		// console.log([1, 2, 3, 7, 5].some(num => num % 2 === 0)); // true
-
-		// No even, returns false
-		// console.log([1, 9, 3, 7, 5].some(num => num % 2 === 0)); // false
-
-		// 3) All even, returns true
-		// console.log([2, 4, 6, 8, 8].some(num => num % 2 === 0)); // true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// .find()
-
-
-
-
-
-
-
-
-
-
-
-
-		// .find() = returns first element
-		// from the array which passes my test
-		// otherwise returns undefined
-
-
-
-
-
-
-		// Example: find number greater than 3
-
-		// console.log([1, 4, 5, 7, 9].find(num => num > 3)); // 4
-
-
-
-
-
-
-
-
-
-		// How to find all elements satisfying my condition?
-
-		// Answer:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Answer: .filter()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Spread operator (...)
-
-
-
-
-
-
-
-
-
-
-
-
-		// The spread operator (...) is a cool feature in JavaScript
-		// that allows you to expand elements of an iterable
-		// (like an array or object) into individual elements.
-		// In other words "to copy" elements of an array or object.
-
-
-
-
-
-
-
-
-
-		// Examples:
-
-
-
-		// Copying arrays
-
-		// const originalArray = [1, 2, 3];
-		// const copiedArray = [ ...originalArray ];
-		// console.log(copiedArray); // [1, 2, 3]
-
-
-
-
-
-		// Merging arrays
-
-		// const array1 = [1, 2, 3];
-		// const array2 = ['a', 'b', 'c'];
-		// console.log([ ...array1, ...array2 ]); // [1, 2, 3, 'a', 'b', 'c']
-
-
-
-
-		// Copying objects
-
-		// const originalObject = { name: 'John', age: 25 };
-		// const duplicateObject = { ...originalObject };
-		// console.log(duplicateObject); // { name: 'John', age: 25 }
-
-
-
-
-
-
-		// Merging objects
-
-		// const object1 = { a: 1, b: 2 };
-		// const object2 = { c: 3, d: 4 };
-		// const mergedObject = { ...object1, ...object2 };
-		// console.log(mergedObject); // { a: 1, b: 2, c: 3, d: 4 }
-
-
-
-
-
-
-		// We can do more cool staff with spread operator
-
-
-
-
-		// Add elements to array
-
-		// Example:
-
-		// const array = [1, 2, 3];
-		// const newArray = [0, ...array, 4];
-		// console.log(newArray); // [0, 1, 2, 3, 4]
-
-
-
-
-
-
-
-		// Pass arguments to a function
-
-		// Example:
-
-		// const sum = (a, b, c) => a + b + c;
-		// const numbers = [1, 2, 3];
-		// console.log(sum(numbers[0], numbers[1], numbers[2]));
-		// console.log(sum(...numbers));
-
-
-		// Remember!
-		// We can pass more arguments than needed
-		// to the function, but if we pass
-		// less arguments, unexpected results can happen.
-
-		// const sum = (a, b, c) => a + b + c;
-		// const numbers = [1, 2, 3, 4];
-		// console.log(sum(...numbers));
-
-
-		// const sum = (a, b, c) => a + b + c;
-		// const numbers = [ 1 ];
-		// console.log(sum(...numbers));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Object destructuring
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Object destructuring is a powerful feature in JavaScript.
-		// It allows to extract properties from objects.
-		// And assign them to variables.
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// Example
-
-		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
-		// const name = person.name;
-		// const age = person.age;
-		// const cityProp = person.city;
-
-
-		// I can do the same but in a concise way
-		// with Object destructuring:
-
-		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
-		// const { name, age, city } = person;
-
-		// I may wish not to extract all properties,
-		// but only those which I need:
-
-		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
-		// const { age } = person;
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// We can use destructuring in
-		// function parameters
-
-		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
-		//
-		// function greet({ name, age }) {
-		//     console.log(`Hello, ${name}! You are ${age} years old.`);
-		// }
-		//
-		// greet(person); // 'Hello, Alice! You are 25 years old.'
-
-
-
-
-
-
-
-		// You can't destructure null or undefined
-
-		// const { name } = null; // TypeError: Cannot destructure property 'name' of 'null'
 
 
 

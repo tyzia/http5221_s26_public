@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    window.onload = function() {
+        function validateCanadaAndPrintResult(countryCode) {
+            const pattern = /^can$/i;
+            const isCountryCodeValid = pattern.test(countryCode);
+            if (isCountryCodeValid) {
+                document.querySelector('.output').innerHTML =
+                    `${countryCode} is a <strong>valid</strong> Canadian code`;
+            } else {
+                document.querySelector('.output').innerHTML =
+                    `${countryCode} is <strong>not</strong> a valid Canadian code`;
+            }
+        }
+
+        validateCanadaAndPrintResult('usa');
+    }
+    </script>
+</head>
+<body>
+<section class="output"></section>
+</body>
+</html>

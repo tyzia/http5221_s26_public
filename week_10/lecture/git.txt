@@ -1,0 +1,181 @@
+
+
+
+
+
+git
+
+
+
+
+branches
+merge
+merge conflicts
+
+
+
+
+
+
+
+
+
+
+
+Branches
+
+I can create a copy of my project.
+I would use git branch for it.
+
+
+
+demo
+
+> mkdir 2
+> cd 2
+> git init
+> vim 1.txt
+i
+Hello world
+:x
+> git add .
+> git commit -m "Create 1.txt file"
+> git checkout -b version_two
+> git branch (to see all branches)
+> vim 1.txt
+i
+New message
+:x
+> git add .
+> git commit -m "Add new message to 1.txt"
+> git checkout main (see the result)
+> git checkout version_two (see the result)
+
+
+
+
+
+IMPORTANT!
+Always create your own branch when working on your assignment!
+
+
+
+
+
+Useful commands:
+
+> git branch name-of-branch
+Copy all changes from current branch into "name-of-branch".
+You will still stay on your current branch.
+
+> git checkout -b name-of-branch
+Copy all changes from current branch into "name-of-branch"
+and switch to that branch.
+
+> git checkout existing-branch-name
+Switch from current branch to "existing-branch-name".
+
+
+
+
+
+
+
+
+
+
+
+
+
+Status
+
+> git status
+
+This is very safe and useful command.
+
+The main command which will tell you
+everything about what is currently
+happening with your code and git.
+
+Please, use it as often as possible.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git merge conflict
+
+It occurs when two branches change the same line.
+
+Demo
+
+> mkdir 1
+> cd 1
+> git init
+> vim index.html i hello world :x
+> git add index.html
+> git commit -m "Create index.html file"
+> git branch a
+> git branch b
+> git branch
+> git checkout a
+> vim index.html i a :x
+> git commit -am "Add a"
+> git checkout b
+> vim index.html i b :x
+> git commit -am "Add b"
+> git merge a
+> git status  Unmerged paths
+> vim index.html
+
+<<<<<<< HEAD
+b hello world
+=======
+a hello world
+>>>>>>> a
+
+ - `<<<<<<< HEAD` marks the beginning of the conflict.
+ - `=======` separates the changes from the two branches.
+ - `>>>>>>> a` marks the end of the conflict.
+
+
+Resolve the conflict - means delete all that is not needed
+and finalize with "git add index.html"
+
+> git status  // the conflict is still not resolved
+> git add index.html  // resolve the conflict
+> git commit // will create Merge commit
+> git log --oneline
+
+> git checkout a
+> vim index.html // we don't see b
+
+
+Summary
+
+1. What causes merge conflicts?
+When two branches modify the same part of a file,
+and Git cannot automatically merge the changes.
+
+2. How to see the conflicts?
+Open the file and look for `<<<<<<<`, `=======`, and `>>>>>>>`.
+
+3. How to resolve conflicts?
+Manually edit the file.
+Choose which changes to keep.
+Delete all not needed and markers (`<<<<<<<`, `=======`, and `>>>>>>>`)
+git add .
+git commit
+
+
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    // Should validate age between
+    // 18 and 25 (inclusive) and return
+    // - true if inside the range
+    // - false if outside the range
+
+    function isValidAge(age) {
+    	// step 1 -> empty
+
+    	// step 2 -> add code
+    	// return age > 18 || age < 25;
+
+        // step 3 -> fix code
+        // return age > 18 && age < 25;
+
+        // step 4 -> fix code
+        // return age >= 18 && age <= 25;
+
+    	// step 5 -> add error handling
+    	// if (typeof age !== 'number') {
+    	// 	throw new Error('Invalid input: age must be a number');
+    	// }
+        // return age >= 18 && age <= 25;
+    }
+
+    function testIsValidAge(age, expectedResult) {
+    	return isValidAge(age) === expectedResult;
+    }
+
+    const testCases = [
+    	{ age: 17, expected: false },
+    	{ age: 18, expected: true },
+    	{ age: 19, expected: true },
+    	{ age: 24, expected: true },
+    	{ age: 25, expected: true },
+    	{ age: 26, expected: false },
+    	{ age: undefined, expected: 'Invalid input: age must be a number' },
+    	{ age: 'not a number', expected: 'Invalid input: age must be a number' },
+    	{ age: null, expected: 'Invalid input: age must be a number' },
+    ];
+
+    testCases.forEach(testCase => {
+    	const age = testCase.age;
+    	const expected = testCase.expected;
+    	try {
+    		const result = testIsValidAge(age, expected);
+    		if (result) {
+    			console.log(`Test passed for age ${age}`);
+    		} else {
+    			console.error(`Test failed for age ${age}: expected ${expected}, got ${isValidAge(age)}`);
+    		}
+    	} catch(err) {
+    		if (err.message === expected) {
+    			console.log(`Test passed for age ${age}: expected error "${expected}"`);
+    		} else {
+    			console.error(`Test failed for age ${age}: expected error "${expected}", got "${err.message}"`);
+    		}
+    	}
+    });
+</script>
+<body>
+
+</body>
+</html>
